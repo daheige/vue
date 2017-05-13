@@ -581,7 +581,7 @@
 
     /* istanbul ignore next */
     function isNative(Ctor) {
-        return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+        return typeof Ctor === 'function' && /native code/.test(Ctor.toString());
     }
 
     var hasSymbol =
@@ -747,6 +747,7 @@
     }
 
     function popTarget() {
+        if(targetStack.length <= 0) return; //if targetStack is empty,it will do nothing.
         Dep.target = targetStack.pop();
     }
 
@@ -796,7 +797,7 @@
             if (inserted) { ob.observeArray(inserted); }
             // notify change
             ob.dep.notify();
-            return result
+            return result;
         });
     });
 
@@ -904,7 +905,7 @@
         if (asRootData && ob) {
             ob.vmCount++;
         }
-        return ob
+        return ob;
     }
 
     /**
@@ -974,11 +975,11 @@
         if (Array.isArray(target) && typeof key === 'number') {
             target.length = Math.max(target.length, key);
             target.splice(key, 1, val);
-            return val
+            return val;
         }
         if (hasOwn(target, key)) {
             target[key] = val;
-            return val
+            return val;
         }
         var ob = (target).__ob__;
         if (target._isVue || (ob && ob.vmCount)) {
@@ -986,15 +987,15 @@
                 'Avoid adding reactive properties to a Vue instance or its root $data ' +
                 'at runtime - declare it upfront in the data option.'
             );
-            return val
+            return val;
         }
         if (!ob) {
             target[key] = val;
-            return val
+            return val;
         }
         defineReactive$$1(ob.value, key, val);
         ob.dep.notify();
-        return val
+        return val;
     }
 
     /**
@@ -1011,14 +1012,14 @@
                 'Avoid deleting properties on a Vue instance or its root $data ' +
                 '- just set it to null.'
             );
-            return
+            return;
         }
         if (!hasOwn(target, key)) {
-            return
+            return;
         }
         delete target[key];
         if (!ob) {
-            return
+            return;
         }
         ob.dep.notify();
     }
@@ -1066,7 +1067,7 @@
      */
     function mergeData(to, from) {
         if (!from) {
-            return to
+            return to;
         }
         var key, toVal, fromVal;
         var keys = Object.keys(from);
@@ -1080,7 +1081,7 @@
                 mergeData(toVal, fromVal);
             }
         }
-        return to
+        return to;
     }
 
     /**
@@ -1103,10 +1104,10 @@
                     'definitions.',
                     vm
                 );
-                return parentVal
+                return parentVal;
             }
             if (!parentVal) {
-                return childVal
+                return childVal;
             }
             // when parentVal & childVal are both present,
             // we need to return a function that returns the
@@ -1117,7 +1118,7 @@
                 return mergeData(
                     childVal.call(this),
                     parentVal.call(this)
-                )
+                );
             }
         } else if (parentVal || childVal) {
             return function mergedInstanceDataFn() {
@@ -1127,7 +1128,7 @@
                 if (instanceData) {
                     return mergeData(instanceData, defaultData)
                 } else {
-                    return defaultData
+                    return defaultData;
                 }
             }
         }
@@ -1172,10 +1173,10 @@
     strats.watch = function(parentVal, childVal) {
         /* istanbul ignore if */
         if (!childVal) {
-            return Object.create(parentVal || null)
+            return Object.create(parentVal || null);
         }
         if (!parentVal) {
-            return childVal
+            return childVal;
         }
         var ret = {};
         extend(ret, parentVal);
@@ -1187,7 +1188,7 @@
             }
             ret[key] = parent ? parent.concat(child) : [child];
         }
-        return ret
+        return ret;
     };
 
     /**
@@ -1205,7 +1206,7 @@
             var ret = Object.create(null);
             extend(ret, parentVal);
             extend(ret, childVal);
-            return ret
+            return ret;
         };
 
     /**
