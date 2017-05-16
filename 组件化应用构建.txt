@@ -1,0 +1,18 @@
+组件化应用构建
+组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、自包含和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树
+
+ //注册一个组件box
+Vue.component('box', {
+    props : ['todo'], //v-bind绑定的属性
+    template: '<li>{{ todo.text }}</li>'
+});
+
+子单元通过 props 接口实现了与父单元很好的解耦。我们现在可以进一步为我们的 todo-item 组件实现更复杂的模板和逻辑的改进，而不会影响到父单元。
+在一个大型应用中，有必要将整个应用程序划分为组件，以使开发可管理。在后续教程中我们将详述组件，不过这里有一个（假想的）使用了组件的应用模板是什么样的例子：
+<div id="app">
+  <app-nav></app-nav>
+  <app-view>
+    <app-sidebar></app-sidebar>
+    <app-content></app-content>
+  </app-view>
+</div>

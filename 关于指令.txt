@@ -1,0 +1,69 @@
+v-bind 属性被称为指令。指令带有前缀 v-，以表示它们是 Vue 提供的特殊属性。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。简言之，这里该指令的作用是：“将这个元素节点的 title 属性和 Vue 实例的 message 属性保持一致”
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>test</title>
+    <script src="dist/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <p>{{ username }}</p>
+        <span v-bind:title="hgtitle">
+            this is test title
+        </span>
+        <p>if条件循环</p>
+        <p v-if="hg_flag">测试显示</p>
+        <p>v-for绑定数据渲染列表</p>
+        <ul>
+            <li v-for="tool in tools">
+                {{ tool.text }}
+            </li>
+        </ul>
+        <p>处理用户输入</p>
+        <p>
+            {{ mess }}
+        </p>
+          <button v-on:click="reciveMess">逆转消息</button>
+        <p>v-model 指令，它能轻松实现表单输入和应用状态之间的双向绑定</p>
+        <div>
+            <p>{{ desc }}</p>
+            <input v-model="desc"/>
+        </div>
+    </div>
+    <script>
+    var app = new Vue({
+        el: "#app", //选择的元素区域
+        //data是一个json对象，为view提供数据展示
+        data: {
+            message: "this is test!", //视图展示层的变量message,{{ message }}用来渲染变量
+            username :'daheige',
+            hgtitle : 'page load time: '+new Date(),
+            hg_flag : true, //当我们设置为false的时候，视图中的hg_flag位置的内容就不显示
+            tools : [ //绑定数据
+                {
+                    text : 'one test'
+                },
+                {
+                    text : "two test"
+                },
+                {
+                    text : "three test method"
+                }
+            ],
+            mess : 'daheige@shenzhen@china',
+            desc : 'please input your desc'
+        },
+        methods : {
+            reciveMess : function(){
+                var mess = this.mess.split('@').reverse().join('-');
+                console.log(); //this.mess会指向data中的mess
+                this.mess = mess;
+            }
+        }
+    });
+    </script>
+</body>
+</html>
