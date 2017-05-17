@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue模板语法使用</title>
+    <script src="dist/js/vue.js" type="text/javascript"></script>
+    <style>
+    .class1 {
+        color: red;
+        font-size: 18px;
+    }
+
+    #js-box-id {
+        height: 60px;
+        width: 100%;
+        border: 1px solid green;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="js-app">
+        <p>{{ message }}</p>
+        <p>使用 v-html 指令用于输出 html 代码</p>
+        <div v-html="hg_html"></div>
+        <p>属性: HTML 属性中的值应使用 v-bind 指令。</p>
+        <p v-bind:class="{'class1':hg_class}">hello heige</p>
+        <p>Vue.js 都提供了完全的 JavaScript 表达式支持</p>
+        <p v-bind:id="hg_id">
+            num计算后：{{ hg_num + 1 }}
+            <br/> hg_intro反转后：{{ hg_intro.split('@').reverse().join('-') }}
+        </p>
+        <p>关于指令：指令是带有 v- 前缀的特殊属性。
+            <br/> 指令用于在表达式的值改变时，将某些行为应用到DOM 上
+        </p>
+        <p>是否显示 <span v-if="hg_flag">大黑哥</span></p>
+        <p>关于参数：参数在指令后以冒号指明。例如， v-bind 指令被用来响应地更新 HTML 属性：</p>
+        <a v-bind:href="baidu_url">baidu</a>
+        v-bind:href="xxx"简写方式：:href="xxx"
+        <a :href="baidu_url">baidu</a>
+        <p>监听 DOM 事件用v-on:事件名，比如v-on:click="hg_click"</p>
+        <p v-on:click="hg_click">click me </p>
+        <p>v-on:click缩写方式@click</p>
+        <p @click="hg_click">click me again</p>
+        <input type="text" v-bind:value="hg_click_intro"/>
+        <p>用户输入 在 input 输入框中我们可以使用 v-model 指令来实现双向数据绑定</p>
+        <p>你输入的内容是： {{ hg_input_data }}</p>
+        <input type="text" v-model="hg_input_data" placeholder="please input data" />
+        <div>过滤器 Vue.js 允许你自定义过滤器，被用作一些常见的文本格式化。由"管道符"指示</div>
+        <p>{{ hg_mess | hg_filter | hg_filter_2 }}</p>
+    </div>
+    <script>
+    var app = new Vue({  //实例化的对象指向app
+        el: "#js-app",
+        //data中的变量会直接挂载到app对象实例上面，比如app.message
+        //在vue.js中其实是挂载在app.$data对象上
+        data: { //data为html内容提供数据，用于渲染dom结构的html
+            message: "这是一个变量message",
+            hg_html: "<ul><li>fefefe</li><li>dddd</li></ul>", //一般来说不建议直接输出html内容
+            hg_class: true, //如果hg_class的值是true就采用class1样式,为false就不采用样式
+            hg_num: 10,
+            hg_intro: "heige@php@nodejs@vue", //在view(html dom)中反转内容
+            hg_id: 'js-box-id', //需绑定的id
+            hg_flag : true, //v-if 指令将根据表达式 true or false来决定是否插入span元素
+            baidu_url : 'https://www.baidu.com',
+            hg_click_intro : 'haha',
+            hg_input_data : '',
+            hg_mess : 'daheige@nodejs'
+        },
+        methods : {
+            hg_click : function(){
+                this.hg_click_intro = "随机数："+Math.floor(Math.random()*90);
+            }
+        },
+        //过滤器使用，filters包含的方法
+        filters : {
+            hg_filter : function(value){
+                return value.split('@').join('-----');
+            },
+            hg_filter_2 : function(value){
+                return value+' test filter';
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

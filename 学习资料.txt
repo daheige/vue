@@ -3,3 +3,5 @@ vue.js学习参考：
 http://www.runoob.com/vue2/vue-tutorial.html　　新手入门
 http://www.runoob.com/w3cnote/vue-js-quickstart.html
 http://www.cnblogs.com/libin-1/p/6196106.html
+
+入门学习：http://www.runoob.com/vue2/vue-template-syntax.html
