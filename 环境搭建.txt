@@ -1,0 +1,165 @@
+1、安装nodejs6.9.5+以后的版本
+nodejs下载：
+    https://nodejs.org/en/download/
+    http://nodejs.org/dist/
+
+(centos6.5系统) nodejs6.10.2+源码编译安装　
+    https://nodejs.org/dist/v6.10.3/node-v6.10.3.tar.gz
+    编译安装：
+    1，安装软件
+    yum -y install gcc make gcc-c++ openssl-devel wget
+    2，获取nodejs资源
+    cd /usr/local/
+    sudo wget http://nodejs.org/dist/v6.10.2/node-v6.10.2.tar.gz
+
+    3，解压
+    sudo tar -zvxf node-v6.10.2.tar.gz
+    4，编译及安装
+    进入
+    cd node-v6.10.2
+    sudo ./configure
+    make
+    sudo make && make install
+    5，验证是否配置成功
+    node -v
+
+ubuntu及centos6.5+系统安装nodejs6.9.5+版本
+    nodejs6.9.5源码安装参考：https://github.com/daheige/pro_js_notes/tree/master/es6
+    typescript用法参考：http://www.jianshu.com/p/d906dfaeddc5
+
+2、开发环境所需安装的软件：
+    npm install -g cnpm --registry=http://registry.npm.taobao.org
+    npm install -g express
+    npm install -g express-generator
+    npm install -g gulp
+    npm install -g gulp-sass
+    npm install -g gulp-tinypng
+    npm install -g jshint
+    npm install -g jslint
+    npm install -g mysql
+    npm install -g opencc
+    npm install -g requirejs
+    npm install -g supervisor
+    npm install -g uglify-js
+    npm install -g csso
+    npm install -g bower
+    npm install -g grunt
+    npm install -g opencc
+    npm install -g vue　　安装v2.3.3版本
+    npm install -g vue-cli　安装v2.3.3版本
+    npm install -g typescript  安装typescript@2.3.2版本
+    npm install tsc -g //执行typescript到js的编译
+    npm install tsd -g //用来下载typescript的声明文件xx.d.ts,使IDE对第三方包提供智能提示
+    npm install babel -g   //暂时用不到,用来转换es6代码到es5
+    npm install babel-runtime //暂时用不到,用来转换es6代码到es5
+
+
+安装完毕后查看：
+    heige@daheige:/usr/local/nodejs/lib/node_modules$ ll
+    总用量 112
+    drwxrwxr-x 28     500     500 4096  5月 17 09:53 ./
+    drwxrwxr-x  3     500     500 4096  2月  1 05:02 ../
+    drwxr-xr-x  3 nobody  heige 4096  5月 17 09:53 babel/
+    drwxr-xr-x  6 nobody  heige 4096  5月 17 09:53 babel-runtime/
+    drwxr-xr-x  4 nobody  root    4096  5月 16 18:30 bower/
+    drwxr-xr-x  4 nobody  heige 4096  5月 16 18:20 cnpm/
+    drwxr-xr-x  5 nobody  root    4096  5月 16 18:30 csso/
+    drwxr-xr-x  4 nobody  heige 4096  5月 16 18:21 express/
+    drwxr-xr-x  5 nobody  heige 4096  5月 16 18:21 express-generator/
+    drwxr-xr-x  5 nobody  heige 4096  5月 17 09:37 grunt/
+    drwxr-xr-x  6 nobody  heige 4096  5月 16 18:22 gulp/
+    drwxr-xr-x  3 heige heige 4096  5月 17 09:36 gulp-autoprefixer/
+    drwxr-xr-x  4 nobody  root    4096  5月 16 18:27 gulp-sass/
+    drwxr-xr-x  3 nobody  root    4096  5月 16 18:31 gulp-tinypng/
+    drwxr-xr-x  7 nobody  root    4096  5月 16 18:28 jshint/
+    drwxr-xr-x  7 nobody  root    4096  5月 16 18:28 jslint/
+    drwxr-xr-x  4 nobody  root    4096  5月 16 18:29 mysql/
+    drwxrwxr-x 11     500     500 4096  2月  1 05:02 npm/
+    drwxr-xr-x 11 nobody  root    4096  5月 16 18:29 opencc/
+    drwxr-xr-x  3 nobody  root    4096  5月 16 18:29 requirejs/
+    drwxr-xr-x  4 nobody  root    4096  5月 16 18:29 supervisor/
+    drwxr-xr-x  3 nobody  heige 4096  5月 17 09:52 tsc/
+    drwxr-xr-x  5 nobody  heige 4096  5月 17 09:53 tsd/
+    drwxr-xr-x  4 nobody  heige 4096  5月 17 09:49 typescript/
+    drwxr-xr-x  6 nobody  root    4096  5月 16 18:29 uglify-js/
+    drwxr-xr-x  5 heige heige 4096  5月 17 09:40 vue/
+    drwxr-xr-x  7 heige heige 4096  5月 17 09:39 vue-cli/
+    drwxr-xr-x  9 nobody  heige 4096  5月 17 09:37 webpack/
+
+3、编辑器sublime text3插件安装和设置
+sublime安装下这些插件
+    Aligntab
+    alignment
+    ctags
+    docblockr
+    esformatter
+    javascript beautify
+    nodejs
+    tag
+    html/css/js prettify
+    jslint
+    jsformat
+    javascript completions
+    terminal
+    typescript
+    vuejs
+
+1)设置sublime settings
+{
+    "auto_complete": true,
+    "auto_match_enabled": true,
+    "color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+    "default_encoding": "UTF-8",
+    "default_line_ending": "unix",
+    "draw_minimap_border": true,
+    "draw_white_space": "all",
+    "ensure_newline_at_eof_on_save": true,
+    "expand_tabs_on_save": false,
+    "font_face": "Ubuntu Mono",
+    "font_size": 12,
+    "highlight_line": true,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "rulers":
+    [
+        80,
+        100,
+        120
+    ],
+    "tab_size": 4,
+    "translate_tabs_to_spaces": true,
+    "trim_automatic_white_space": true,
+    "trim_trailing_white_space_on_save": true,
+    "update_check": false,
+    "word_wrap": false
+}
+
+2)设置sublime nodejs插件配置settings-user
+{
+  // save before running commands
+  "save_first": true,
+  // if present, use this command instead of plain "node"
+  // e.g. "/usr/bin/node" or "C:\bin\node.exe"
+  "node_command": "/usr/bin/node",
+  // Same for NPM command
+  "npm_command": "/usr/bin/npm"
+}
+设置html/css/js 插件配置set "node" path
+{
+  "node_path": {
+    "windows": "C:/Program Files/nodejs/node.exe",
+    "linux": "/usr/bin/node",
+    "osx": "/usr/local/bin/node"
+  },
+
+  // Automatically format when a file is saved.
+  "format_on_save": false,
+
+  // Only format the selection if there's one available.
+  "format_selection_only": true,
+
+  // Log the settings passed to the prettifier from `.jsbeautifyrc`.
+  "print_diagnostics": true
+}
