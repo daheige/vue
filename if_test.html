@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-if--else</title>
+    <script src="dist/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="hg_flag">
+            这是一个真值
+        </div>
+        <div v-else>
+            hg_flag的布尔值是false
+        </div>
+        <p v-if="hg_num > 0.5">随机数大于0.5</p>
+        <div v-if="hg_level == 1">
+            1111
+        </div>
+        <div v-else-if="hg_level == 2">
+            2222
+        </div>
+        <div v-else>
+            3333
+        </div>
+        <input type="button" @click="show_seen" value="click me">
+        <p v-show="seen">one two</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : {
+                hg_flag : true,
+                hg_level : 0,
+                seen : 1,//用于v-show元素的显示和隐藏
+                hg_num : 0
+            },
+            methods : {
+                show_seen : function(){
+                    this.seen = ! this.seen;
+                    this.hg_num = Math.random();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

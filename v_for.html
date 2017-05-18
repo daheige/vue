@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-for使用</title>
+    <script src="dist/js/vue.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="js-app">
+        <p>遍历一位数组</p>
+        <ul>
+            <li v-for="text in intro">{{ text }}</li>
+        </ul>
+         <ul>
+            <li v-for="value in goods">{{ value.gid }}</li>
+        </ul>
+        <p>v-for可以迭代对象</p>
+        <p v-for="desc,key in desc_obj">{{ key }}---{{ desc }}</p>
+        <p>v-for 迭代整数</p>
+        <p v-for="n in 10">{{ n }}</p>
+    </div>
+    <script>
+    var app = new Vue({
+        el: "#js-app",
+        data: {
+            intro: ['one', 'two', 'three'],
+            goods: [
+                {
+                    gid: 100,
+                    gname: "xiaomao",
+                    price: 100,
+                },
+                {
+                    gid: 110,
+                    gname: "xiaogou",
+                    price: 102,
+                },
+                {
+                    gid: 120,
+                    gname: "haha",
+                    price: 120,
+                },
+            ],
+            desc_obj : {
+                name : "daheige",
+                age  : 27,
+                address : 'shenzhen'
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>
