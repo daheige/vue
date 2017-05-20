@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-on事件绑定</title>
+    <script src="dist/js/vue.js" type="text/javascript"></script>
+    <style type="text/css">
+        .hg_class{
+            color: red;
+        }
+        .hg_class2{
+            font-size: 18px;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div id="js-app">
+        <input v-on:click="switchState" value="click me" v-bind:type="inputType"/>
+        <p v-bind:class="{hg_class:is_active,'hg_class2':is_has}">{{ intro }}</p>
+        <p v-on:click="say('heige')">内联事件点击</p>
+        <a v-on:click.stop="doThis">阻止baidu跳转</a>
+        <input v-on:keyup.enter="say('daheige')" type="text">fefe
+        <div @click.ctrl="say('daheige')">Do something</div>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el : "#js-app",
+            data : {
+                intro : "this is test",
+                is_active : true,
+                is_has : 1,
+                inputType : 'button'
+            },
+            methods : { //使用 methods 来替代 computed,只重新渲染时候，会重新调用函数
+                switchState : function (){
+                    this.is_active = this.is_active;
+                    this.is_has = !this.is_has;
+                },
+                say : function(info){
+                    var rnd = Math.random();
+                    console.log(info+ Math.floor(rnd * 8));
+                },
+                doThis : function(){
+                    console.log('baidu');
+                    // location.href="https://163.com";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

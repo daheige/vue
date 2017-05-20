@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>class 绑定</title>
+    <script src="dist/js/vue.js" type="text/javascript"></script>
+    <style type="text/css">
+        .hg_class{
+            color: red;
+        }
+        .hg_class2{
+            font-size: 18px;
+            border: 1px solid green;
+        }
+    </style>
+</head>
+<body>
+    <div id="js-app">
+        <p>绑定单个或多个样式用对象的方式</p>
+        <p v-bind:class="{hg_class:is_active,'hg_class2':is_has}">{{ intro }}</p>
+        <p>直接使用一个classObj</p>
+        <p v-bind:class="hgClassObj">fefeffessss</p>
+        <p>采用数组的方式绑定多个样式</p>
+        <p v-bind:class="['hg_class','hg_class2']">fefesss</p>
+        <h3>Vue.js style(内联样式) 我们可以在 v-bind:style 直接设置样式</h3>
+        <p v-bind:style="{'font-size':'18px','color':'green'}">sfesss</p>
+        <p>直接绑定到一个样式对象，让模板更清晰</p>
+        <p v-bind:style="testStyle">sfesss</p>
+    </div>
+    <script type="text/javascript">
+        var app = new Vue({
+            el : "#js-app",
+            data : {
+                intro : "this is test",
+                is_active : true,
+                is_has : 1
+            },
+            computed : {
+                 hgClassObj : function(){
+                    return {
+                        hg_class : this.is_active && !this.is_has, //hg_class表示样式的类名
+                        hg_class2: 1
+                    }
+                },
+                testStyle : function(){
+                    return {'fontSize':'18px','color':'red'};
+                    //当 v-bind:style 使用需要特定前缀的 CSS 属性时，如 transform ，Vue.js 会自动侦测并添加相应的前缀。
+                }
+            }
+        });
+    </script>
+</body>
+</html>

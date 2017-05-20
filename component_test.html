@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>component组件使用</title>
+    <script src="dist/js/vue.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="app">
+        <hg-app></hg-app>
+        <box></box>
+        <child message="商品1" gid="123" v-bind:code="parentCode"></child>
+        <ul>
+            <hg-item v-for="item in tools" v-bind:item="item"></hg-item>
+        </ul>
+        <div v-runoob="{ color: 'green', text: 'daheige!' }"></div>
+        <input type="text" v-focus>
+        <!-- <input type="text" v-hg> -->
+    </div>
+    <script type="text/javascript">
+    //注册组件
+    Vue.component('hg-app', {
+        template: '<h1>this is a test</h1>'
+    });
+    var box_obj = {
+        template: '<h1>这是一个局部组件</h1>'
+    };
+
+    //props属性 父组件的数据需要通过 props 把数据传给子组件
+    // 注册
+    Vue.component('child', {
+        // 声明 props
+        props: ['message', 'gid', 'code'], //msg是用v-bind绑定的内容
+        // 同样也可以在 vm 实例中像 "this.message" 这样使用
+        template: '<span>{{ message }} 商品id是 {{ gid }} code:{{ code }}</span>'
+    });
+
+    //全局组件hg-item
+    Vue.component('hg-item', {
+        props: ['item'], //v-bind绑定的属性item
+        template: '<li>text:{{ item.text }} gid:{{ item.gid }}</li>'
+    });
+
+    //自定义全局指令
+    Vue.directive('runoob', function(el, binding) {
+        // 简写方式设置文本及背景颜色
+        el.innerHTML = binding.value.text
+        el.style.backgroundColor = binding.value.color
+    });
+    Vue.directive('focus', {
+        inserted: function(el) {
+            // 聚焦元素
+            el.focus();
+        }
+    });
+    //创建根实例
+    var app = new Vue({
+        el: "#app",
+        data: {
+            //动态 Prop类似于用 v-bind 绑定 HTML 特性到一个表达式，也可以用 v-bind 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件
+            parentCode: '12222',
+            tools: [{
+                text: '123',
+                gid: '203'
+            }, {
+                text: '456',
+                gid: 300,
+            }, {
+                text: '789',
+                gid: 400
+            }]
+        },
+        components: {
+            'box': box_obj, //局部组件，只能在当前实例中使用
+        },
+        // 注册一个局部的自定义指令 v-hg
+        directives: {
+            hg: {
+                // 指令的定义
+                inserted: function(el) {
+                    // 聚焦元素
+                    el.focus();
+                }
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>
